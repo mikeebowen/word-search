@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/mrbgit/word-search/issues"
   },
-  "homepage": "https://github.com/mrbgit/word-search#readme"
+  "homepage": "https://github.com/mrbgit/word-search#readme",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
 }
