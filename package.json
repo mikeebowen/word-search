@@ -1,0 +1,19 @@
+{
+  "name": "word-search",
+  "version": "0.1.0",
+  "description": "Given a collection of letters which contain hidden words (in the file `WORDSEARCH.TXT`), find all of the words in the word list (in the file `WORDLIST.TXT`) within the puzzle.  Remember, the words may be hidden left to right, right to left, up, down or diagonally.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrbgit/word-search.git"
+  },
+  "author": "Michael Bowen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mrbgit/word-search/issues"
+  },
+  "homepage": "https://github.com/mrbgit/word-search#readme"
+}
