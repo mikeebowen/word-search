@@ -2,45 +2,84 @@
 
 var express = require('express');
 var app = express();
-var easyAsync = require('easy-async');
 var fs = require('fs');
+var Promise = require('promise');
+var read = Promise.denodeify(fs.readFile);
+var write = Promise.denodeify(fs.writeFile);
 var port = process.env.PORT || 3000;
 var time = new Date();
 
-function getFileData (callback) {
+function getFileData () {
   var output;
   fs.readFile('./WordSearch.txt', 'utf8', function (err, data) {
   if (err) throw err;
-    console.log(data);
+    // console.log(data);
     return data.toString(data);
-    callback();
   });
   // console.log(output);
   // return output;
 }
 
-function makeCallback (callback) {
-  console.log('info');
-  callback();
+var p = read('./WordSearch.txt', 'utf8')
+        .then(function (str) {
+          // console.log(str);
+          return str;
+        })
+        .then(function (str) {
+          // console.log(str);
+          read('./WordList.txt', 'utf8')
+          .then(function (words) {
+            var testWordsArray = [];
+            var testWords = '';
+            // console.log(words, str);
+            for (var i = 0; i < words.length; i++) {
+              if (words[i] !== ' ') {
+                testWords += words[i];
+              }
+              if (words[i] === ' ') {
+                testWordsArray.push(testWords);
+                testWords = '';
+              }
+            }
+            for (var i = 0; i < testWordsArray.length; i++) {
+              testWordsArray[i].trim();
+            }
+                console.log(testWordsArray);
+          })
+        })
+var num = 1;
+function test () {
+  console.log(num);
+  num++;
 }
-easyAsync.start(getFileData)
-.then(makeCallback);
-// var exampleTask = function(callback){
-//   var count = 1;
-//   console.log('starting task', count);
-//   setTimeout(function(){
-//     console.log('done with task' count);
-//     count++;
-//     callback();
-//   }, 1000);
-// }
 
-// easyAsync.start(exampleTask)
-// .then(exampleTask)
-// .then(exampleTask)
-// .then(function() {
-//   console.log('continuing after tasks in series');
+var promise = new Promise(function(resolve, reject) {
+  resolve(1);
+});
+
+// promise.then(function (val) {
+//   console.log(val); // 1
+//   return val++;
+// }).then(function (val) {
+//   console.log(val); // 3
+//   return val++;
+// }).then(function (val) {
+//   console.log(val);
+//   return val;
 // });
+
+promise.then(function(val) {
+  console.log(val); // 1
+  return val + 2;
+}).then(function(val) {
+  console.log(val); // 3
+  return val + 2;
+}).then(function (val) {
+  console.log(val);
+  return num = val;
+});
+
+console.log('NUM : ', num);
 
 
 app.listen(port, function () {
