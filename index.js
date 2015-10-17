@@ -22,7 +22,7 @@ function getFileData () {
 
 var p = read('./WordSearch.txt', 'utf8')
         .then(function (str) {
-          // console.log(str);
+          console.log(str);
           read('./WordList.txt', 'utf8')
           .then(function (words) {
             var testWordsArray = [];
@@ -31,6 +31,12 @@ var p = read('./WordSearch.txt', 'utf8')
             // var lengthsTrimmed = [];
             words = words.replace(/(\r\n|\n|\r)/gm, ' ').toLowerCase();
             var horizontalStr = str.replace(/(\r\n|\n|\r)/gm, '').toLowerCase();
+            var diagonalStrArr = str.replace(/(\r\n|\n|\r)/gm, ',').toLowerCase().split(',');
+            var diagonalStr = [];
+            for (var i = 0; i < diagonalStrArr.length - 1; i++) {
+              diagonalStr.push(diagonalStrArr[i][i]);
+            }
+            console.log(diagonalStr);
             // console.log(horizontalStr);
             for (var i = 0; i < words.length; i++) {
               if (words[i] !== ' ') {
