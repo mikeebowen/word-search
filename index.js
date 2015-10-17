@@ -23,28 +23,36 @@ function getFileData () {
 var p = read('./WordSearch.txt', 'utf8')
         .then(function (str) {
           // console.log(str);
-          return str;
-        })
-        .then(function (str) {
-          // console.log(str);
           read('./WordList.txt', 'utf8')
           .then(function (words) {
             var testWordsArray = [];
             var testWords = '';
-            // console.log(words, str);
+            // var lengthOfWords = [];
+            // var lengthsTrimmed = [];
+            words = words.replace(/(\r\n|\n|\r)/gm, ' ').toLowerCase();
+            var horizontalStr = str.replace(/(\r\n|\n|\r)/gm, '').toLowerCase();
+            // console.log(horizontalStr);
             for (var i = 0; i < words.length; i++) {
               if (words[i] !== ' ') {
-                testWords += words[i];
+                testWords = testWords.concat(words[i]);
               }
-              if (words[i] === ' ') {
+              if (words[i] === ' ' || words[i] === '\r\n') {
+                testWords = testWords.trim();
                 testWordsArray.push(testWords);
                 testWords = '';
               }
             }
             for (var i = 0; i < testWordsArray.length; i++) {
-              testWordsArray[i].trim();
+              if (horizontalStr.indexOf(testWordsArray[i]) !== -1) {
+                console.log(testWordsArray[i], ' found horizontally forwards');
+              }
             }
-                console.log(testWordsArray);
+            var reverseStr = horizontalStr.split().reverse().toString();
+            for (var i = 0; i < testWordsArray.length; i++) {
+              if (reverseStr.indexOf(testWordsArray[i]) !== -1) {
+                console.log(testWordsArray[i], ' found horizontally backwards');
+              }
+            }
           })
         })
 var num = 1;
