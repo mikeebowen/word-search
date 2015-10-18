@@ -6,7 +6,9 @@ var port = process.env.PORT || 3000;
 var time = new Date();
 var solveWordSearch = require('./lib/solve-word-search');
 
-solveWordSearch('./WordSearch.txt', './WordList.txt');
+var theAnswers = solveWordSearch('./WordSearch.txt', './WordList.txt');
+
+console.log(theAnswers);
 
 app.listen(port, function () {
   console.log('Server started on port: ' + port + ', at ' + time);
