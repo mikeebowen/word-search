@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/mrbgit/word-search#readme",
   "dependencies": {
+    "body-parser": "^1.14.1",
     "easy-async": "0.0.1",
     "express": "^4.13.3",
     "promise": "^7.0.4",
