@@ -4,7 +4,7 @@ var fs = require('fs');
 var path = require('path');
 var bodyparser = require('body-parser');
 var multer  = require('multer');
-var upload = multer;
+var upload = multer({dest: './uploads/'})
 var findWords = require('../lib/solve-word-search');
 
 module.exports = function (router) {
@@ -32,10 +32,10 @@ module.exports = function (router) {
       // console.log(txt);
       res.redirect('back');
     })*/
-   /* .post(function (req, res) {
+    .post(upload.array('words', 2), function (req, res) {
       console.log('HELLO :::::::::   ', req.files);
-      if (req.body.words && req.body.words) {
-        findWords(req.body.wordBlock, req.body.words, function (data) {
+      if (req.files[0] && req.files[1]) {
+        findWords(req.files[0].path, req.files[1].path, function (data) {
           fs.readFile(path.join(__dirname, '../index.html'), function (err, data2) {
             var theHtml = data2.toString('');
             var hF = data.horizontallyForwards = data.horizontallyForwards.join(', ');
@@ -47,18 +47,12 @@ module.exports = function (router) {
       } else {
         res.sendFile(path.join(__dirname, '../index.html'));
       }
-    })*/
-    .post(function (req, res) {
-      upload(req, res, function (err) {
-        if (err) {
-          // An error occurred when uploading
-          return
-        }
-
-        // Everything went fine
-        console.log(req.files);
-        res.redirect('back');
-      })
     })
+/*    .post(upload.array('words', 2), function (req, res, next){
+      console.log(req.body) // form fields
+      console.log(req.files[0]) // form files
+      console.dir(req.headers['content-type']);
+      res.status(204).end()
+    })*/
 
 }

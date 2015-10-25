@@ -1,5 +1,5 @@
 'use strict';
-/*
+
 var express = require('express');
 var app = express();
 var path = require('path');
@@ -17,12 +17,12 @@ app.use('/', wordSearchRouter);
 
 app.listen(port, function () {
   console.log('Server started on port: ' + port + ', at ' + time);
-});*/
-var express = require('express');
+});
+/*var express = require('express');
 var app = express();
-var multer  = require('multer');
 var bodyparser = require('body-parser');
 var path = require('path');
+var multer  = require('multer');
 var upload = multer({dest: './uploads/'})
 
 app.use(bodyparser.json());
@@ -36,9 +36,9 @@ app.get('/', function (req, res){
 
 app.post('/', upload.array('words', 2), function (req, res, next){
     console.log(req.body) // form fields
-    console.log(req.files) // form files
+    console.log(req.files[0]) // form files
     console.dir(req.headers['content-type']);
     res.status(204).end()
 });
 
-app.listen(3000);
+app.listen(3000);*/
