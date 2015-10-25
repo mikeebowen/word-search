@@ -35,7 +35,7 @@ module.exports = function (router) {
         fs.readFile(path.join(__dirname, '../index.html'), function (err, data2) {
           var theHtml = data2.toString('');
           var hF = data.horizontallyForwards = data.horizontallyForwards.join(', ');
-          theHtml = theHtml.replace('<div id="theAnswers"></div>', '<div id="theAnswers"><h5>Horizontally Forward</h5><p>' + hF + '</p><h5>Horizontally Backwards</h5><p>' + data.horizontallyBackwards.join(', ') + '</p><h5>Vertically Forwards</h5><p>' + data.verticallyForwards.join(', ') + '</p><h5>Vertically Backwards</h5><p>' + data.verticallyBackwards.join(', ') + '</p><h5>Diagonally Forwards</h5><p>' + data.diagonallyForwards.join(', ') + '</p><h5>Diagonally Forwards</h5><p>' + data.diagonallyBackwards.join(', ') + '</p></div>');
+          theHtml = theHtml.replace('<div id="theAnswers"></div>', '<div id="theAnswers"><h5>Horizontally Forward</h5><p>' + hF + '</p><h5>Horizontally Backwards</h5><p>' + data.horizontallyBackwards.join(', ') + '</p><h5>Vertically Forwards</h5><p>' + data.verticallyForwards.join(', ') + '</p><h5>Vertically Backwards</h5><p>' + data.verticallyBackwards.join(', ') + '</p><h5>Diagonally Forwards</h5><p>' + data.diagonallyForwards.join(', ') + '</p><h5>Diagonally Backwards</h5><p>' + data.diagonallyBackwards.join(', ') + '</p></div>');
           res.send(theHtml);
 
         })
