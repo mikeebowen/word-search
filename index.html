@@ -3,15 +3,14 @@
   <title>Word Search</title>
 </head>
 <body>
-  <h1>Add a txt file with a block of text and a text file with a list of words to search for and the outputwill give you the matching words</h1>
-  <form action="/searchwords" method="post" type="multipart/form-data">
+  <h1>Add block of text and a list of words as text files to solve the word search</h1>
+  <form action="/" method="post" type="multipart/form-data">
     <label for="wordBlock">Block of Text</label>
     <input type="file"  id="wordBlock" name="wordBlock" />
     <label for="words">Words to Search for</label>
     <input type="file"  id="words" name="words" />
-    <label for="textArea">Text Area</label>
-    <input type="text" id="textArea" name="textArea" />
     <button type="submit">Submit</button>
   </form>
+  <div id="theAnswers"></div>
 </body>
 </html>
