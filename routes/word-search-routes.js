@@ -3,13 +3,15 @@
 var fs = require('fs');
 var path = require('path');
 var bodyparser = require('body-parser');
+var multer  = require('multer');
+var upload = multer;
 var findWords = require('../lib/solve-word-search');
 
 module.exports = function (router) {
   router.use(bodyparser.json());
   router.use(bodyparser.urlencoded({
   extended: true
-}));
+  }));
 
   router.route('/')
     .get(function (req, res) {
@@ -30,7 +32,8 @@ module.exports = function (router) {
       // console.log(txt);
       res.redirect('back');
     })*/
-    .post(function (req, res) {
+   /* .post(function (req, res) {
+      console.log('HELLO :::::::::   ', req.files);
       if (req.body.words && req.body.words) {
         findWords(req.body.wordBlock, req.body.words, function (data) {
           fs.readFile(path.join(__dirname, '../index.html'), function (err, data2) {
@@ -44,6 +47,18 @@ module.exports = function (router) {
       } else {
         res.sendFile(path.join(__dirname, '../index.html'));
       }
+    })*/
+    .post(function (req, res) {
+      upload(req, res, function (err) {
+        if (err) {
+          // An error occurred when uploading
+          return
+        }
+
+        // Everything went fine
+        console.log(req.files);
+        res.redirect('back');
+      })
     })
 
 }

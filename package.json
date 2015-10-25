@@ -20,6 +20,7 @@
     "body-parser": "^1.14.1",
     "easy-async": "0.0.1",
     "express": "^4.13.3",
+    "multer": "^1.1.0",
     "promise": "^7.0.4",
     "q": "^1.4.1"
   }
